@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #ccTalk python library
 #Copyright (C) 2012 Nicolas Oberli
 #
