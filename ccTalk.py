@@ -223,14 +223,14 @@ class ccTalkPayload():
     def __init__(self, header='0', data=''):
         try:
             self.header = int(header)
-        except TypeError, e:
+        except TypeError as e:
             self.header = 0
         self.data = data
         self.decodedHeader = ''
         if self.header != '':
             try:
                 self.headerType = headerTypes[self.header]
-            except KeyError, e:
+            except KeyError as e:
                 self.headerType = 'Unknown'
         else:
             self.headerType = ''
@@ -335,7 +335,7 @@ class ccTalkPayload():
         return self.decodedHeader
 
     def _extractBits(self, byte):
-        for i in xrange(8):
+        for i in range(8):
             yield (byte >> i) & 1
 
 
@@ -374,7 +374,7 @@ class ccTalkMessage():
             self.payload = ccTalkPayload(header, data)
             self.sigmode = 1
         else:
-            raise Exception 
+            raise Exception
 
     def raw(self):
         """
@@ -472,7 +472,7 @@ class ccTalkMessage():
 
         for c in data:
             crc ^= (ord(c) << 8) & 0xffff
-            for x in xrange(8):
+            for x in range(8):
                 if crc & 0x8000:
                     crc = ((crc << 1) ^ poly) & 0xffff
                 else:
